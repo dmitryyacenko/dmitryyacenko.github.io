@@ -228,6 +228,10 @@ nav.floating-nav li.link:last-of-type {
     left: 15px;
 }
 
+.page-horizontal-navi a div.active, .page-vertical-navi a div.active{
+    background-color: #fff;
+}
+
 .timeline ul li div {
     line-height: 1.8rem;
 }
@@ -402,6 +406,11 @@ a.inpage-link:hover {
     }
 }
 
+@media all and (max-width: 1120px) {
+    .img-roller.active {
+        width: 10vw;
+    }
+}
 @media all and (max-width: 775px) {
     .header .bouncing-down {
         padding: 1rem;

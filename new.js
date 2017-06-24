@@ -54,8 +54,12 @@ $(function () {
             }
         }
     });
-    var breakpoints=['#about', '#ist', '#contact'];
+    var breakpoints=['#about', '#ist', '#vm', '#asp', '#contact'];
     breakpoints=breakpoints.map((i)=>$(i).offset().top);
+    $(document).on('resize', function(e){
+        breakpoints=['#about', '#ist', '#vm', '#asp', '#contact'];
+        breakpoints=breakpoints.map((i)=>$(i).offset().top);
+    })
     var dur=window.innerHeight+20;
     var lastIndex=0;
     $(document).on('scroll', function (e) {
@@ -69,9 +73,11 @@ $(function () {
         if(parseInt(scroll)>=parseInt(breakpoints[breakpoints.length-1])){
             currentPoint=breakpoints.length-1;
         }
-        $('.timeline ul li').removeClass('active');
+        $('.page-horizontal-navi a div').removeClass('active');
+        $('.page-vertical-navi a div').removeClass('active');
         if(currentPoint!==undefined) {
-            $($('.timeline ul li')[currentPoint]).addClass('active');
+            $($('.page-horizontal-navi a div')[currentPoint]).addClass('active');
+            $($('.page-vertical-navi a div')[currentPoint]).addClass('active');
         }
     })
     var controller=new ScrollMagic.Controller();
