@@ -1,0 +1,81 @@
+.main-navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 4rem;
+    background: #10c0ff;
+    color:#fff;
+    font-size: 1.3em;
+}
+body{
+    background: #eee;
+}
+.main-navbar a {
+    color: #fff
+}
+
+.centered{
+    margin-top: 60px;
+    margin-left: 12.5%;
+    font-size: 34px;
+}
+.after-carousel{
+    margin-top: 390px;
+}
+.carousel-1{
+    margin-top: 5vh;
+    position: absolute;
+    width: 52vw;
+    margin-left: -7.2vw;
+}
+.center-9-lg{
+    margin-left: 12.5%;
+}
+@media all and (max-width: 1200px){
+    .carousel-1{
+        width: 84vw;
+        margin-left: -11.8vw;
+    }
+}/*
+@media all and (max-width: 992px){
+    .carousel-1{
+        margin-top: 5vh;
+        position: absolute;
+        width: 66.66vw;
+        margin-left: -10.9vw;
+    }
+}*/
+.center{
+    background: #fff;
+    overflow: hidden;
+}
+.row p{
+    text-align: justify;
+}
+.carousel-1 .item{
+    overflow: hidden;
+    min-height: 300px;
+    min-width: 25vw;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.link-divider{
+    margin-left: 3rem;
+    border-left: 1px solid #fff;
+    padding-left: 4px;
+}
+.main-navbar .brand{
+    font-weight: bold;
+}
+.main-navbar .left{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.main-navbar .left div{
+    font-size: 0.9em;
+    margin-top: 0.05em;
+    margin-left: 4rem;
+    cursor: pointer;
+}
