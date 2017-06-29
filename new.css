@@ -109,6 +109,7 @@ a:active {
 .content-header {
     font-weight: bold;
     padding: 3rem 0;
+    margin: 0;
 }
 
 .main article .content {
@@ -118,6 +119,7 @@ a:active {
     min-width: 785px;
     text-align: justify;
     margin: 0 auto;
+    padding-top: 40px;
     font-size: 2rem;
     color: #fff;
     text-indent: 4rem;
@@ -126,7 +128,6 @@ a:active {
 .main article .content p {
     margin-bottom: 1.5rem;
 }
-
 
 .address-body {
     text-align: left;
@@ -329,53 +330,84 @@ a.inpage-link:hover {
     position: fixed;
     overflow: hidden;
     display: none;
+    background-color: rgba(9, 171, 230, 0.9);
 }
 
 .scroll-status,
 .page-horizontal-navi {
     display: block;
-    height: 20px;
+    height: 40px;
     margin: 0 auto;
 }
 
+.scroll-bg,
 .scroll-status {
     position: absolute;
+    left: 10px;
+}
+
+.scroll-bg {
+    top: 12px;
+    height: 8px;
     background-color: #fff;
-    width: 50%;
+    width: 600px;
+}
+
+.scroll-status {
+    top: 14px;
+    height: 4px;
+    background-color: rgba(10, 178, 239, 1);
+    width: 100px;
 }
 
 .page-horizontal-navi {
     position: relative;
     min-width: 785px;
     width: 50vw;
-    background-color: rgba(10, 178, 239, 1);
 }
 
-.page-horizontal-navi a {
-    position: relative;
+.page-horizontal-navi ul {
+    position: absolute;
+    top: 6px;
     height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.page-horizontal-navi ul li {
+    width: 150px;
+    list-style-type: none;
     display: block;
-    width: 20%;
     float: left;
-    z-index: 100;
 }
 
-.page-horizontal-navi a div {
-    width: 100%;
-    height: 100%;
-    border: solid 1px;
-    border-color: darkslateblue;
-    text-align: center;
+.page-horizontal-navi ul li a {
+    position: absolute;
+    top: 1rem;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
 }
 
-.page-horizontal-navi a:hover {
-    background-color: white;
-    text-decoration: none;
+.nav-marker {
+    position: relative;
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    border: solid white 10px;
+    background-color: rgba(10, 178, 239, 1);
+    border-radius: 50%;
+    transition-property: all;
+    transition-duration: .2s;
+    transition-timing-function: linear;
 }
 
-.page-horizontal-navi a:hover {
-    background-color: white;
-    text-decoration: none;
+.nav-visited {
+    border-width: 6px;
+}
+
+.nav-visited-last {
+    border-width: 3px;
 }
 
 @media all and (max-width: 992px) {

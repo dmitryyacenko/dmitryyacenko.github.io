@@ -16,12 +16,19 @@ window.onchange = function () {
 
 function switchDisplay() {
 
+    function div(val, by) {
+        return (val - val % by) / by;
+    }
+
+
     var mainContent = document.getElementsByClassName("main");
     var menuWrapper = document.getElementsByClassName("nav-wrapper");
     var headerBlock = document.getElementsByClassName("header");
     var articleBlocks = document.getElementsByTagName("article");
 
     var scrollHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight, document.body.clientHeight, document.documentElement.clientHeight);
+
+    var articleFixedHeight = Math.max(articleBlocks[0].clientHeight, articleBlocks[0].offsetHeight, articleBlocks[0].scrollHeight);
 
     var headerHeight = Math.max(headerBlock[0].clientHeight, headerBlock[0].offsetHeight, headerBlock[0].scrollHeight);
 
@@ -34,16 +41,46 @@ function switchDisplay() {
                 menuWrapper[i].style.display = "block";
             }
 
-            //var s = "scrollHeight:" + scrollHeight + "; scrollTop: " + scrollTop + "; clientHeight: " + document.getElementsByClassName("header")[0].clientHeight + "; offsetHeight: " + document.getElementsByClassName("header")[0].offsetHeight + "; scrollHeight: " + document.getElementsByClassName("header")[0].scrollHeight;
-            //console.log(s);
-
-            //var b = headerBlock[0].getBoundingClientRect().bottom;
             var scrollPos = 0;
 
             var foundPos = menuWrapper[i].firstElementChild.className.indexOf("horiz");
             if (foundPos !== -1) {
-                scrollPos = (scrollTop - headerHeight) / (scrollHeight - headerHeight) * 100 + 100 / (articleBlocks.length);
-                scrollStatus[i].style.width = scrollPos + "%";
+
+                var scrollBGElem = document.getElementsByClassName("scroll-bg")[0];
+
+                var scrollMax = Math.max(scrollBGElem.clientWidth, scrollBGElem.offsetWidth, scrollBGElem.scrollWidth);
+
+                var articleNumber = div(scrollTop - headerHeight, articleFixedHeight);
+
+                var navMarker = document.getElementsByClassName("nav-marker")
+
+                for (var j = 0; j < articleNumber; j++) {
+                    if (!navMarker[j].classList.contains("nav-visited")) {
+                        if (navMarker[j].classList.contains("nav-visited-last")) {
+                            navMarker[j].classList.remove("nav-visited-last")
+                        }
+                        navMarker[j].classList.add("nav-visited")
+                    }
+                }
+
+                if (!navMarker[articleNumber].classList.contains("nav-visited-last")) {
+                    if (navMarker[articleNumber].classList.contains("nav-visited")) {
+                        navMarker[articleNumber].classList.remove("nav-visited")
+                    }
+                    navMarker[articleNumber].classList.add("nav-visited-last")
+                }
+
+                for (var j = articleNumber + 1; j < articleBlocks.length; j++) {
+                    if (navMarker[j].classList.contains("nav-visited")) {
+                        navMarker[j].classList.remove("nav-visited")
+                    }
+                    if (navMarker[j].classList.contains("nav-visited-last")) {
+                        navMarker[j].classList.remove("nav-visited-last")
+                    }
+                }
+
+                scrollPos = scrollMax * (scrollTop - headerHeight) / (scrollHeight - headerHeight - articleFixedHeight);
+                scrollStatus[i].style.width = scrollPos + "px";
             }
 
             foundPos = menuWrapper[i].firstElementChild.className.indexOf("vertic");
