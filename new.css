@@ -109,15 +109,17 @@ a:active {
 .content-header {
     font-weight: bold;
     padding: 3rem 0;
+    margin: 0;
 }
 
 .main article .content {
-    height: calc(100vh - 20px);
+    height: calc(100vh);
     width: 50vw;
-    min-height: 750px;
+    min-height: 700px;
     min-width: 785px;
     text-align: justify;
     margin: 0 auto;
+    padding-top: 40px;
     font-size: 2rem;
     color: #fff;
     text-indent: 4rem;
@@ -127,8 +129,9 @@ a:active {
     margin-bottom: 1.5rem;
 }
 
-.address-body::before {
-    content: "\a0 \a0 \a0";
+.address-body {
+    text-align: left;
+    margin-bottom: 1rem;
 }
 
 .address-body a {
@@ -190,7 +193,7 @@ nav.floating-nav li.link:last-of-type {
 
 .next-section-link {
     text-indent: 0;
-    margin-top: 3vh;
+    margin-top: 1rem;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -226,10 +229,6 @@ nav.floating-nav li.link:last-of-type {
     position: relative;
     width: 100px;
     left: 15px;
-}
-
-.page-horizontal-navi a div.active, .page-vertical-navi a div.active{
-    background-color: #fff;
 }
 
 .timeline ul li div {
@@ -306,12 +305,13 @@ a.inpage-link:hover {
     background-color: rgba(10, 178, 239, 1);
     position: fixed;
     right: 0px;
-    z-index: 100;
 }
 
 .page-vertical-navi a {
+    position: relative;
     display: block;
     height: 20vh;
+    z-index: 100;
 }
 
 .page-vertical-navi a div {
@@ -330,49 +330,89 @@ a.inpage-link:hover {
     position: fixed;
     overflow: hidden;
     display: none;
+    background-color: rgba(9, 171, 230, 0.9);
 }
 
-.horizontal-scroll {
-    position: fixed;
-    background-color: red;
-    width: 100%;
-    height: 20px;
-    z-index: 105;
+.scroll-status,
+.page-horizontal-navi {
+    display: block;
+    height: 40px;
+    margin: 0 auto;
+}
+
+.scroll-bg,
+.scroll-status {
+    position: absolute;
+    left: 10px;
+}
+
+.scroll-bg {
+    top: 12px;
+    height: 8px;
+    background-color: #fff;
+    width: 600px;
+}
+
+.scroll-status {
+    top: 14px;
+    height: 4px;
+    background-color: rgba(10, 178, 239, 1);
+    width: 100px;
 }
 
 .page-horizontal-navi {
-    display: block;
-    height: 20px;
-    width: 50vw;
+    position: relative;
     min-width: 785px;
-    margin: 0 auto;
-    background-color: rgba(10, 178, 239, 1);
-    z-index: 100;
+    width: 50vw;
 }
 
-.page-horizontal-navi a {
+.page-horizontal-navi ul {
+    position: absolute;
+    top: 6px;
     height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.page-horizontal-navi ul li {
+    width: 150px;
+    list-style-type: none;
     display: block;
-    width: 20%;
     float: left;
 }
 
-.page-horizontal-navi a div {
-    width: 100%;
-    height: 100%;
-    border: solid 1px;
-    border-color: darkslateblue;
-    text-align: center;
+.page-horizontal-navi ul li a {
+    position: relative;
+    top: 1rem;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
 }
 
-.page-horizontal-navi a:hover {
-    background-color: white;
-    text-decoration: none;
+.page-horizontal-navi ul li a:hover .nav-marker {
+    border-width: 3px;
 }
 
-.page-horizontal-navi a:hover {
-    background-color: white;
-    text-decoration: none;
+.nav-marker {
+    position: relative;
+    top: -10px;
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    border: solid white 10px;
+    background-color: rgba(10, 178, 239, 1);
+    border-radius: 50%;
+    transition-property: all;
+    transition-duration: .2s;
+    transition-timing-function: linear;
+}
+
+.nav-visited {
+    border-width: 6px;
+}
+
+.nav-visited-last {
+    border-width: 3px;
 }
 
 @media all and (max-width: 992px) {
@@ -380,21 +420,17 @@ a.inpage-link:hover {
         height: 100vh;
         width: 20px;
     }
-    .page-horizontal-navi {
-        display: none;
-    }
     .content-header {
         font-size: 3rem;
     }
     .main article {
         padding-right: 20px;
-        margin-bottom: 3rem;
     }
     .main article .content {
         text-indent: 0;
         width: 80vw;
-        min-width: 0px;
         height: auto;
+        min-width: 0px;
         min-height: 0px;
         font-size: 1.8rem;
     }
@@ -404,19 +440,21 @@ a.inpage-link:hover {
     .page-vertical-navi {
         display: block;
     }
-}
-
-@media all and (max-width: 1120px) {
-    .img-roller.active {
-        width: 10vw;
+    .page-horizontal-navi {
+        display: none;
+    }
+    .scroll-status {
+        width: 20px;
+        height: 50%;
     }
 }
+
 @media all and (max-width: 775px) {
     .header .bouncing-down {
         padding: 1rem;
     }
     .google-maps {
-        height: 300px;
+        height: 40vh;
     }
     .content-header {
         padding: 2rem 0;
@@ -428,5 +466,11 @@ a.inpage-link:hover {
     .main article .content {
         width: 90vw;
         font-size: 1.5rem;
+    }
+}
+
+@media all and (max-height: 450px) {
+    .page-vertical-navi a {
+        font-size: 3vh;
     }
 }
